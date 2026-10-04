@@ -113,7 +113,7 @@ test("the demo question bank contains one question in each of seven categories",
 test("browser configuration matches a seven-question round", () => {
   const config = loadBrowserGlobal("config.js", "DPD_CONFIG");
   assert.equal(config.questionCount, 7);
-  assert.equal(config.roundSeconds, 7);
+  assert.equal(config.roundSeconds, 15);
   assert.match(config.eventId, /^[a-z0-9][a-z0-9-]{1,39}$/);
   assert.ok(Number.isInteger(config.leaderboardPollMs) && config.leaderboardPollMs >= 1000);
 });
@@ -143,8 +143,11 @@ test("demo and backend answer keys agree for every official question", () => {
 
 test("database migration blocks direct browser writes", () => {
   const migrationPath = "supabase/migrations/202610040001_create_game_tables.sql";
+  const timerMigrationPath = "supabase/migrations/202610040002_raise_round_timer_to_15_seconds.sql";
   assert.ok(existsSync(path.join(projectRoot, migrationPath)), `Missing ${migrationPath}`);
+  assert.ok(existsSync(path.join(projectRoot, timerMigrationPath)), `Missing ${timerMigrationPath}`);
   const originalSql = read(migrationPath);
+  const timerSql = read(timerMigrationPath).toLowerCase();
   const sql = originalSql.toLowerCase();
 
   assert.match(sql, /create table if not exists public\.game_sessions/);
@@ -157,7 +160,9 @@ test("database migration blocks direct browser writes", () => {
   assert.match(sql, /unique \(event_id, player_key\)/);
   assert.match(sql, /create or replace function public\.consume_game_rate_limit/);
   assert.match(sql, /out_rank_title text/);
-  assert.match(sql, /v_effective_correct\s*:=\s*p_is_correct\s+and\s+v_response_ms\s*<=\s*10000/);
+  assert.match(sql, /v_effective_correct\s*:=\s*p_is_correct\s+and\s+v_response_ms\s*<=\s*18000/);
+  assert.match(timerSql, /create or replace function public\.record_game_answer/);
+  assert.match(timerSql, /v_effective_correct\s*:=\s*p_is_correct\s+and\s+v_response_ms\s*<=\s*18000/);
   for (const title of [
     "Legendary Developer Bodyguard",
     "Developer Protector",
@@ -182,5 +187,7 @@ test("the public Edge Function has the expected deployment contract", () => {
   assert.match(source, /Deno\.env\.get\("ALLOWED_ORIGINS"\)/);
   assert.match(source, /SUPABASE_SECRET_KEY/);
   assert.match(source, /consume_game_rate_limit/);
+  assert.match(source, /const TIME_LIMIT_SECONDS = 15;/);
+  assert.match(source, /const SERVER_DEADLINE_MS = 18_000;/);
   assert.match(source, /action !== "start" && action !== "answer" && action !== "leaderboard"/);
 });

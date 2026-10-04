@@ -113,7 +113,7 @@ For a different GitHub account, replace the GitHub origin with `https://YOUR_GIT
 window.DPD_CONFIG = Object.freeze({
   eventId: "tech-market-2026-live",
   eventName: "Tech Market 2026",
-  roundSeconds: 7,
+  roundSeconds: 15,
   questionCount: 7,
   feedbackDelayMs: 1450,
   leaderboardPollMs: 5000,
@@ -196,7 +196,7 @@ The result titles are:
 | 2–3 | Recovering Pinger |
 | 0–1 | Serial Developer Pinger |
 
-The phone shows seven seconds. The server allows a small transport grace window, then marks a late response wrong even if someone modifies the browser UI.
+The phone shows fifteen seconds. The server allows a three-second transport grace window, then marks a late response wrong even if someone modifies the browser UI.
 
 One normalized player/team identity gets one official session per `eventId`. A different spelling can still look like a different person, so for a prize event have a booth host confirm the winner's display name. This is strong protection against accidental or casual score editing, not identity verification for a high-stakes contest.
 

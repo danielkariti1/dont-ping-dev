@@ -8,7 +8,7 @@
   const config = {
     eventId: safeEvent || rawConfig.eventId || "tech-market-2026-live",
     eventName: rawConfig.eventName || "Tech Market",
-    roundSeconds: Number(rawConfig.roundSeconds) || 7,
+    roundSeconds: Number(rawConfig.roundSeconds) || 15,
     questionCount: 7,
     feedbackDelayMs: Number(rawConfig.feedbackDelayMs) || 1450,
     edgeFunctionUrl: String(rawConfig.edgeFunctionUrl || "").replace(/\/$/, ""),

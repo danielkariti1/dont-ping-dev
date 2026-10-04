@@ -1,0 +1,9 @@
+project_id = "dont-ping-dev"
+
+# This is a public QR-code booth game, so players do not need Supabase accounts.
+# The function performs origin checks, input validation, coarse rate limiting,
+# one-attempt enforcement, and all scoring itself. SUPABASE_SECRET_KEYS (hosted),
+# SUPABASE_SECRET_KEY, or the legacy service-role key remains inside the Edge
+# Function environment and must never be copied to GitHub Pages.
+[functions.game-api]
+verify_jwt = false

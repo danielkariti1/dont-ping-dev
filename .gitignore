@@ -1,0 +1,21 @@
+# Local Supabase state and secrets
+supabase/.branches/
+supabase/.temp/
+supabase/functions/.env
+.env
+.env.*
+!.env.example
+
+# Optional machine-local browser configuration
+config.local.js
+
+# Generated output
+.pages/
+coverage/
+node_modules/
+
+# Operating-system and editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp

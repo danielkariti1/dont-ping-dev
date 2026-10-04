@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090c16">
+  <meta name="description" content="Live Don't Ping Dev leaderboard.">
+  <title>Don't Ping Dev · Live Leaderboard</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=live-1">
+</head>
+<body class="leaderboard-body">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <main class="leaderboard-shell">
+    <header class="leaderboard-header">
+      <div class="leaderboard-title-wrap">
+        <div class="leaderboard-siren" aria-hidden="true">🚨</div>
+        <div>
+          <h1>DON'T <span>PING DEV</span></h1>
+          <p>Live leaderboard · fastest perfect judgment wins</p>
+        </div>
+      </div>
+      <div class="live-status" aria-live="polite">
+        <span class="mode-badge" id="leaderModeBadge" hidden>DEMO MODE</span>
+        <span class="live-dot" aria-hidden="true"></span>
+        <span id="lastUpdated">Connecting…</span>
+      </div>
+    </header>
+
+    <div class="leaderboard-layout">
+      <section class="leaderboard-main" aria-label="Leaderboard standings">
+        <div class="podium" id="podium" hidden></div>
+        <div class="leader-list" id="leaderList"></div>
+        <div class="empty-state" id="emptyState">
+          <strong>No protectors yet.</strong>
+          Scan the code and claim first place.
+        </div>
+        <div class="leaderboard-error" id="leaderboardError" hidden></div>
+      </section>
+
+      <aside class="join-card">
+        <h2>Think before you ping.</h2>
+        <p>Scan to play seven rapid-fire questions on your phone.</p>
+        <div class="qr-wrap" id="qrCode" aria-label="QR code linking to the game">
+          <span aria-hidden="true">⌛</span>
+        </div>
+        <a class="join-url" id="gameUrl" href="index.html">Open the game</a>
+        <p class="leaderboard-note">
+          Correct answers rank first. Ties go to the fastest player, then the earliest finisher.
+        </p>
+      </aside>
+    </div>
+  </main>
+
+  <script src="config.js?v=live-3"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+          referrerpolicy="no-referrer"
+          onerror="window.dispatchEvent(new Event('qrcode-library-error'))"></script>
+  <script src="leaderboard.js?v=live-3"></script>
+</body>
+</html>

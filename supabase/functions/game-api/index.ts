@@ -113,8 +113,8 @@ export const QUESTIONS: readonly Question[] = Object.freeze([
 
 const QUESTION_COUNT = QUESTIONS.length;
 const QUESTION_BY_ID = new Map(QUESTIONS.map((question) => [question.id, question]));
-const TIME_LIMIT_SECONDS = 7;
-const SERVER_DEADLINE_MS = 10_000;
+const TIME_LIMIT_SECONDS = 15;
+const SERVER_DEADLINE_MS = 18_000;
 const SESSION_SELECT = [
   "id",
   "event_id",

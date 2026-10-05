@@ -248,10 +248,10 @@ begin
     )::integer
   );
 
-  -- Players see a fifteen-second timer. Three seconds of server-side grace absorbs
+  -- Players see a seven-second timer. Three seconds of server-side grace absorbs
   -- the feedback transition and ordinary mobile/network latency without letting
   -- a custom client take unlimited time to preserve a perfect score.
-  v_effective_correct := p_is_correct and v_response_ms <= 18000;
+  v_effective_correct := p_is_correct and v_response_ms <= 10000;
 
   insert into public.game_answers (
     session_id,

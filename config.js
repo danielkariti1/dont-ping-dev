@@ -9,7 +9,7 @@
 window.DPD_CONFIG = Object.freeze({
   eventId: "tech-market-2026-live",
   eventName: "Tech Market 2026",
-  roundSeconds: 15,
+  roundSeconds: 10,
   questionCount: 7,
   feedbackDelayMs: 1450,
   leaderboardPollMs: 5000,
